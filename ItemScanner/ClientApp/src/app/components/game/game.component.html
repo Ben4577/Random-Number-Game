@@ -1,0 +1,122 @@
+
+
+
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-body">
+
+
+      <div class="col-12 d-flex justify-content-center">
+        <h4>Beat your Random Guess!</h4>
+      </div>
+
+
+
+
+
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <button class="ml-2 btn btn-primary" type="button" [disabled]="disableButtons" (click)="getRandom()">Get me a Random Number from 1 to 100</button>
+        </div>
+
+        <div class="col-12 d-flex justify-content-center">
+          <h1>{{oldRandomNumber}}</h1>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <h5>Higher or Lower?</h5>
+        </div>
+      </div>
+
+
+      <br />
+      <br />
+
+      <div class="row mb-3">
+        <div class="col-md-4 offset-md-4">
+          <select [(ngModel)]="selectedItem" class="form-control" name="select">
+            <option *ngFor="let n of decision"
+                    [value]="n.name">
+              {{n.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-4 offset-md-4">
+          <button class=" btn btn-primary btn-block" type="button"  [disabled]="disableButtons" (click)="select()">Select Higher or Lower</button>
+        </div>
+      </div>
+
+      <br />
+      <br />
+
+
+      <div class="row">
+        <div *ngIf="successful" class="col-12 d-flex justify-content-center">
+          <h2 style="color: green">You Were Right!</h2>
+        </div>
+
+        <div *ngIf="!successful" class="col-12 d-flex justify-content-center">
+          <h2 style="color: red">Wrong Start Again</h2>
+        </div>
+
+        <div *ngIf="!successful && gameFinished" class="col-12 d-flex justify-content-center">
+          <h2 style="color: red"></h2>
+        </div>
+      </div>
+
+      <br />
+      <br />
+
+
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <h1 style="color: green">Score: {{score}}</h1>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div *ngIf="score === 10" class="col-12 d-flex justify-content-center">
+          <h5 style="color: green">Congratulations, you have Won!</h5>
+        </div>
+      </div>
+
+      <div class="col-md-4 offset-md-4">
+        <button class=" btn btn-success btn-block" type="button" (click)="newGame()">new Game?</button>
+      </div>
+
+      <br />
+      <br />
+      <br />
+
+
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <div *ngFor="let time of timeCompleted">
+              Time Completed: {{time}}
+            </div>
+          </div>
+      </div>
+
+
+      <h4>Winning Times</h4>
+      <div *ngFor="let userSc of saveduserScoreList">
+        <p style="display:inline">Winning Time: {{userSc.timeCompleted |  date: 'ss' }} seconds  </p>
+        <p style="display:inline">Time Played : {{userSc.date }}</p>
+      </div>
+   
+  
+
+      </div>
+    </div>
+    </div>
+
+
+
